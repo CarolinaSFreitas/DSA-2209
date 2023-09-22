@@ -113,7 +113,7 @@ export async function vinhoAlteraPreco(req, res) {
     const percentual = 1 + Number((taxa / 100))
 
     try {
-      await sequelize.query(`update vinhos set preco = preco * ${percentual}`)
+      await sequelize.query(`update vinhos set preco = preco * ${percentual}`) //altera todos os preços porque não tem where
 
         res.status(200).json({msg: "Ok! Preço alterado com sucesso."})
     } catch (error) {
@@ -122,4 +122,4 @@ export async function vinhoAlteraPreco(req, res) {
 }
 ````
 
-Em rotas: ``  .patch("vinhos/:taxa", vinhoAlteraPreco) `` 
+Em rotas: ``  .patch("/vinhos/:taxa", vinhoAlteraPreco) `` 
