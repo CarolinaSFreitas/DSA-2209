@@ -28,7 +28,32 @@ export const sequelize = new Sequelize('aula', 'aluno', 'senacrs', {
     port: 3306 
   });
   
-```` 
+````
+
+## Pra listagem trazer os dados da tabela que tá como FK, deve-se adicionar a linha no controller de vinhos e marcas:
+
++ Em vinhoController:
+
+````
+    try {
+        const vinhos = await Vinho.findAll({
+          include: Marca
+        })
+````
+
+![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/f88cd9ab-3345-4997-9720-4af8a8510e85)
+
++ Em marcaController:
+
+````
+    try {
+        const marcas = await Marca.findAll({
+            include: Vinho
+        })
+````
+
+![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/7969d0c6-68a3-45e1-a038-fc4bbee479d9)
+
 
 **No Insomnia**:
 1. URL: http://localhost:3000/aula
