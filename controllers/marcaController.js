@@ -1,9 +1,12 @@
 import { Marca } from "../models/Marca.js"
+import { Vinho } from "../models/Vinho.js"
 
 //função de get - vai listar os marcas no insomnia
 export async function marcaIndex(req, res) {
     try {
-        const marcas = await Marca.findAll()
+        const marcas = await Marca.findAll({
+            include: Vinho
+        })
         res.status(200).json(marcas)
     } catch (error) {
         res.status(400).send(error)

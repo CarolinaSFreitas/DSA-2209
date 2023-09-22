@@ -1,9 +1,13 @@
+import { sequelize } from "../database/conecta.js"
+import { Marca } from "../models/Marca.js"
 import { Vinho } from "../models/Vinho.js"
 
 //função de get - vai listar os vinhos no insomnia
 export async function vinhoIndex(req, res) {
     try {
-        const vinhos = await Vinho.findAll()
+        const vinhos = await Vinho.findAll({
+            include: Marca
+        })
         res.status(200).json(vinhos)
     } catch (error) {
         res.status(400).send(error)
@@ -47,6 +51,20 @@ export async function vinhoUpdate(req, res) {
             where: { id }
         })
         res.status(200).json(vinho)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
+
+// função para alterar os preços dos vinhos com porcentagem indicada na url no insomnia (10 por ex.)
+export async function vinhoAlteraPreco(req, res) {
+    const { taxa } = req.params
+    const percentual = 1 + Number((taxa / 100))
+
+    try {
+      await sequelize.query(`update vinhos set preco = preco * ${percentual}`) // sem where ele vai alterar de todos
+
+        res.status(200).json({msg: "Ok! Preço alterado com sucesso."})
     } catch (error) {
         res.status(400).send(error)
     }
