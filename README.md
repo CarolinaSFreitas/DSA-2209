@@ -104,3 +104,22 @@ Dessa forma, a listagem de marcas ficará como:
 E a listagem de vinhos ficará:
 ![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/613cc010-1abf-4653-8be2-baba16f607dd)
 
+#### Para alteração única, como de preço por percentagem, usar o '.patch' e não o '.put'. Exemplo de função pra isso: 
+
+````
+// função para alterar os preços dos vinhos com porcentagem indicada na url no insomnia (10 por ex.)
+export async function vinhoAlteraPreco(req, res) {
+    const { taxa } = req.params
+    const percentual = 1 + Number((taxa / 100))
+
+    try {
+      await sequelize.query(`update vinhos set preco = preco * ${percentual}`)
+
+        res.status(200).json({msg: "Ok! Preço alterado com sucesso."})
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
+````
+
+Em rotas: ``  .patch("vinhos/:taxa", vinhoAlteraPreco) `` 
