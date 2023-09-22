@@ -10,7 +10,7 @@ Aula 9 de Desenvolvimento de Serviços e APIs - ASSOCIAÇÕES - 22/09
 
 **Pra iniciar**:
 1. `` npm init -y ``
-2. `` npm i express sequelize mysql2 ``
+2. `` npm i express sequelize mysql2 cors ``
 3. `` npm i --save-dev nodemon ``
 4. `` npx nodemon app ``
 5. No VS, criar um "app.js" como o arquivo do repo
