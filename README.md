@@ -1,7 +1,7 @@
 # DSA-2209
 Aula 9 de Desenvolvimento de Serviços e APIs - ASSOCIAÇÕES - 22/09
 
-# VINÍCOLA
+# 🍷 VINÍCOLA
 
 #### Documentação do Sequelize: 
 + https://sequelize.org/docs/v6/core-concepts/assocs/
@@ -20,7 +20,6 @@ Aula 9 de Desenvolvimento de Serviços e APIs - ASSOCIAÇÕES - 22/09
 1. Criar a pasta "database" com um arquivo chamado "conecta.js" e lá dentro inserir:
 
 ```
-
 import { Sequelize } from "sequelize";
 
 export const sequelize = new Sequelize('aula', 'aluno', 'senacrs', {
@@ -38,12 +37,18 @@ export const sequelize = new Sequelize('aula', 'aluno', 'senacrs', {
 
 ----
 
-**Chave Estrangeira - Para fazer o Relacionamento 1-N (um pra muitos)** 
+## ⚠️ Atenção: Em 'app.js'
+
+Deve-se criar primeiro a tabela que é dona da chave estrangeira, como nesse caso, **marcas**
+
+![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/9260e37d-9ac4-4e0a-97f3-e9186c595143)
+
+## 🔑 Chave Estrangeira - Para fazer o Relacionamento 1-N (um pra muitos)
 
 1. Após criar as tabelas em Models (Marca, Vinho), fora da definição dos campos deve-se indicar na tabela que vai receber a chave estrangeira:
 
 ````
-   Vinho.belongsTo(Marca, {
+Vinho.belongsTo(Marca, {
     foreignKey: {
         name: "marca_id",
         allowNull: false
@@ -51,25 +56,21 @@ export const sequelize = new Sequelize('aula', 'aluno', 'senacrs', {
     onDelete: "RESTRICT",
     onUpdate: "CASCADE"
 })
-````
 
-![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/1a24a73a-380e-4458-bd6d-17b3da744fd3)
-
-Fazendo isso, ele vai importar no topo do código a outra tabela dona da key:
-
-`` import { Marca } from "./Marca.js"; `` 
-
-![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/6d85c4e2-c7cd-4013-92ee-2c499e12eb3c)
-
-2. Na tabela dona da chave estrangeira, deve-se indicar também:
-
-````
 Marca.hasMany(Vinho, {
     foreignKey: "marca_id"
 })
-
 ````
 
-![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/0efec5c9-739d-4f3b-bfec-6e0afed444d6)
+Dessa forma ele importará a model 'Marca.js' e receberá a foreign key 
 
+![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/3f3d3c10-3e58-4c35-841f-08f65bd8cd71)
+
+## 🕹️ Controllers e Routes 🛣️
+
+1. Tem que criar um controller para cada na pasta controllers, o **vinhoController** e **marcaController**.
+
+2. Em 'routes.js', deve-se criar rotas para cada controller, como da seguinte forma: 
+
+![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/5fe2d46b-f6eb-4755-8439-c715a17efaca)
 
