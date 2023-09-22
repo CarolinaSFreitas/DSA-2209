@@ -30,31 +30,6 @@ export const sequelize = new Sequelize('aula', 'aluno', 'senacrs', {
   
 ````
 
-## Pra listagem trazer os dados da tabela que tá como FK, deve-se adicionar a linha no controller de vinhos e marcas:
-
-+ Em vinhoController:
-
-````
-    try {
-        const vinhos = await Vinho.findAll({
-          include: Marca
-        })
-````
-
-![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/f88cd9ab-3345-4997-9720-4af8a8510e85)
-
-+ Em marcaController:
-
-````
-    try {
-        const marcas = await Marca.findAll({
-            include: Vinho
-        })
-````
-
-![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/7969d0c6-68a3-45e1-a038-fc4bbee479d9)
-
-
 **No Insomnia**:
 1. URL: http://localhost:3000/aula
 2. Criar uma pasta pro projeto
@@ -98,4 +73,34 @@ Dessa forma ele importará a model 'Marca.js' e receberá a foreign key
 2. Em 'routes.js', deve-se criar rotas para cada controller, como da seguinte forma: 
 
 ![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/5fe2d46b-f6eb-4755-8439-c715a17efaca)
+
+## Pra listagem trazer os dados da tabela que tá como FK, deve-se adicionar a linha no controller de vinhos e marcas:
+
++ Em vinhoController:
+
+````
+    try {
+        const vinhos = await Vinho.findAll({
+          include: Marca
+        })
+````
+
+![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/f88cd9ab-3345-4997-9720-4af8a8510e85)
+
++ Em marcaController:
+
+````
+    try {
+        const marcas = await Marca.findAll({
+            include: Vinho
+        })
+````
+
+![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/7969d0c6-68a3-45e1-a038-fc4bbee479d9)
+
+Dessa forma, a listagem de marcas ficará como: 
+![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/9450379c-57a0-450b-854e-61896f563393)
+
+E a listagem de vinhos ficará:
+![image](https://github.com/CarolinaSFreitas/DSA-2209/assets/99994934/613cc010-1abf-4653-8be2-baba16f607dd)
 
