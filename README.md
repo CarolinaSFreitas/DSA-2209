@@ -1,6 +1,8 @@
 # DSA-2209
 Aula 9 de Desenvolvimento de Serviços e APIs - ASSOCIAÇÕES - 22/09
 
+# VINÍCOLA
+
 #### Documentação do Sequelize: 
 + https://sequelize.org/docs/v6/core-concepts/assocs/
 
