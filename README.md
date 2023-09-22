@@ -14,7 +14,7 @@ Aula 9 de Desenvolvimento de Serviços e APIs - ASSOCIAÇÕES - 22/09
 3. `` npm i --save-dev nodemon ``
 4. `` npx nodemon app ``
 5. No VS, criar um "app.js" como o arquivo do repo
-6. Alterar o "package.json", adicionando a linha `` "type": "module", `` após a linha de "main": "index.js","
+6. ⚠️ Alterar o "package.json", adicionando a linha `` "type": "module", `` após a linha de "main": "index.js","
 
 **Banco de Dados**:
 1. Criar a pasta "database" com um arquivo chamado "conecta.js" e lá dentro inserir:
