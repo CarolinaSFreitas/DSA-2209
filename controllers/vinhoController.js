@@ -1,7 +1,7 @@
 import { sequelize } from "../database/conecta.js"
 import { Marca } from "../models/Marca.js"
 import { Vinho } from "../models/Vinho.js"
-import { Op } from 'sequelize';
+import { Op, Sequelize } from 'sequelize';
 
 
 //função de get - vai listar os vinhos no insomnia
@@ -94,7 +94,7 @@ export async function vinhoPorTipo(req, res) {
         const vinhos = await Vinho.findAll({
             where: {
                 tipo: {
-                    [Op.like]: `%${tipo}%`,         //esse 'op.like' é um operador q vai verificar se a string(nesse caso :tipo) tem outra string, o perador 'op.lte' é de comparação menor ou igual
+                    [Op.like]: `%${tipo}%`,       //'op.like' é um operador q vai verificar se a string(nesse caso :tipo) tem outra string, o perador 'op.lte' é de comparação menor ou igual
                 },
             },
         });
@@ -105,3 +105,77 @@ export async function vinhoPorTipo(req, res) {
         res.status(500).json({ message: "Ocorreu um erro ao buscar o vinho pelo tipo." });
     }
 }
+
+//método de filtro de vinhos pela marca(marca_id)
+export async function vinhoPorMarca(req, res) {
+    const { marca_id } = req.params;
+
+    try {
+        const vinhos = await Vinho.findAll({
+            where: {
+                marca_id: marca_id,
+            },
+        });
+
+        res.status(200).json(vinhos);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Ocorreu um erro ao buscar os vinhos pela marca." });
+    }
+}
+
+//quantidade de vinhos agrupada por tipo
+export async function quantiaVinhosTipo(req, res) {
+    const { tipo } = req.params;
+
+    try {
+        const quantiaTipo = await Vinho.findAll({
+            where: {
+                tipo: {
+                    [Op.like]: `%${tipo}%`
+                }
+            },
+            attributes: [
+                'tipo',
+                [Sequelize.fn('count', Sequelize.col('*')), 'Quantidade de vinhos por tipo:']
+            ],
+            group: ['tipo'],
+        });
+
+        res.status(200).json(quantiaTipo);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Ocorreu um erro ao buscar a quantidade de vinhos por tipo.' });
+    }
+}
+
+//quantidade de vinhos agrupada por marca
+export async function quantiaVinhosMarca(req, res) {
+    const { marca_id } = req.params;
+
+    try {
+        const quantiaTipo = await Vinho.findAll({
+            where: {
+                marca_id: marca_id,
+            },
+            attributes: [
+                [sequelize.literal('Marca.id'), 'ID da Marca'],
+                [sequelize.literal('Marca.nome'), 'Nome da Marca'],
+                [sequelize.fn('count', sequelize.col('*')), 'Quantidade de vinhos por marca']
+            ],
+            include: [
+                {
+                    model: Marca,
+                    attributes: []
+                }
+            ],
+            group: ['marca_id'],
+        });
+
+        res.status(200).json(quantiaTipo);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Ocorreu um erro ao buscar a quantidade de vinhos por marca.' });
+    }
+}
+
