@@ -1,6 +1,8 @@
 import { sequelize } from "../database/conecta.js"
 import { Marca } from "../models/Marca.js"
 import { Vinho } from "../models/Vinho.js"
+import { Op } from 'sequelize';
+
 
 //função de get - vai listar os vinhos no insomnia
 export async function vinhoIndex(req, res) {
@@ -62,9 +64,9 @@ export async function vinhoAlteraPreco(req, res) {
     const percentual = 1 + Number((taxa / 100))
 
     try {
-      await sequelize.query(`update vinhos set preco = preco * ${percentual}`) // sem where ele vai alterar de todos
+        await sequelize.query(`update vinhos set preco = preco * ${percentual}`) // sem where ele vai alterar de todos
 
-        res.status(200).json({msg: "Ok! Preço alterado com sucesso."})
+        res.status(200).json({ msg: "Ok! Preço alterado com sucesso." })
     } catch (error) {
         res.status(400).send(error)
     }
@@ -81,5 +83,25 @@ export async function vinhoDelete(req, res) {
         res.status(200).json({ msg: "Ok! Removido com sucesso :)" })
     } catch (error) {
         res.status(400).send(error)
+    }
+}
+
+// método de filtro que o tipo contenha a string passada como parâmetro (ex: tinto, seco, suave)
+export async function vinhoPorTipo(req, res) {
+    const { tipo } = req.params;
+
+    try {
+        const vinhos = await Vinho.findAll({
+            where: {
+                tipo: {
+                    [Op.like]: `%${tipo}%`,         //esse 'op.like' é um operador q vai verificar se a string(nesse caso :tipo) tem outra string, o perador 'op.lte' é de comparação menor ou igual
+                },
+            },
+        });
+
+        res.status(200).json(vinhos);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Ocorreu um erro ao buscar o vinho pelo tipo." });
     }
 }
