@@ -115,6 +115,12 @@ export async function vinhoPorMarca(req, res) {
             where: {
                 marca_id: marca_id,
             },
+            include: [
+                {
+                    model: Marca,
+                    attributes: ['nome'], //atributo desejado, nesse caso, nome da marca
+                },
+            ],
         });
 
         res.status(200).json(vinhos);
