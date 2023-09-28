@@ -44,7 +44,7 @@ export async function marcaUpdate(req, res) {
     }
 
     try {
-        const marca = await marca.update({
+        const marca = await Marca.update({
             nome, cidade
         }, {
             where: { id }
