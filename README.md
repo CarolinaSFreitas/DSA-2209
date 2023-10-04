@@ -1,6 +1,8 @@
 # DSA-2209
 Aula 9 de Desenvolvimento de Serviços e APIs - ASSOCIAÇÕES - 1-N - 22/09
 
+| <img height="50" src="https://user-images.githubusercontent.com/25181517/183568594-85e280a7-0d7e-4d1a-9028-c8c2209e073c.png"> | | <img height="50" src="https://user-images.githubusercontent.com/25181517/183568594-85e280a7-0d7e-4d1a-9028-c8c2209e073c.png"> | 
+
 # 🍷 VINÍCOLA
 
 #### Documentação do Sequelize: 
