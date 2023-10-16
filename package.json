@@ -1,7 +1,7 @@
 {
   "name": "dsa-aula9-2209",
   "version": "1.0.0",
-  "description": "",
+  "description": "Aula 9 de Desenvolvimento de Serviços e APIs - ASSOCIAÇÕES - 1-N - 22/09",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -13,7 +13,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "mysql2": "^3.6.1",
+    "mysql2": "^3.6.2",
     "sequelize": "^6.33.0"
   },
   "devDependencies": {
