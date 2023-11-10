@@ -2,6 +2,7 @@ import express from 'express'
 import { sequelize } from './database/conecta.js'
 import { Vinho } from './models/Vinho.js'
 import { Marca } from './models/Marca.js'
+import { Usuario } from './models/Usuario.js'
 import routes from './routes.js'
 import cors from 'cors'
 
@@ -24,6 +25,10 @@ async function conecta_db() {
 
     await Vinho.sync({ alter: true })          //vai ciar a tabela no banco(se nao existir já) e permitir alterações de campos 
     console.log("Tabela de Vinhos: Ok!")
+
+    await Usuario.sync({ alter: true })          //vai ciar a tabela no banco(se nao existir já) e permitir alterações de campos 
+    console.log("Tabela de Usuários: Ok!")
+
     await sequelize.authenticate();
     console.log('Conexão bem sucedida.');
   } catch (error) {

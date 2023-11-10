@@ -1,6 +1,7 @@
 import { Router } from "express"
 import { vinhoCreate, vinhoIndex, vinhoUpdate, vinhoDelete, vinhoAlteraPreco, vinhoPorTipo, vinhoPorMarca, quantiaVinhosTipo, quantiaVinhosMarca} from "./controllers/vinhoController.js"
 import { marcaCreate, marcaIndex, marcaUpdate, marcaDelete } from "./controllers/marcaController.js"
+import { usuarioIndex, usuarioCreate } from "./controllers/UsuarioController.js"
 
 const router = Router()
 
@@ -15,12 +16,15 @@ router.get("/vinhos", vinhoIndex) //rota pra listagem
       .get("/vinhos/quantidade/tipo/:tipo", quantiaVinhosTipo) //mostra a quantidade de vinhos por tipo
       .get("/vinhos/quantidade/marca/:marca_id", quantiaVinhosMarca) //mostra a quantidade de vinhos por marca
 
-
 // --------------------------------------------------------- ROTAS DE VINHOS
 router.get("/marcas", marcaIndex) //rota pra listagem de marcas, já com os vinhos das respectivas marcas
       .post("/marcas", marcaCreate) //rota pra criação de registro
       .put("/marcas/:id", marcaUpdate) //rota pra alteração do registro
       .delete("/marcas/:id", marcaDelete) //rota pra deletar registros da vinicola
 
-export default router
+// --------------------------------------------------------- ROTAS DE USUARIOS
+router.get("/usuarios", usuarioIndex) //rota pra listagem de usuarios
+      .post("/usuarios", usuarioCreate) //rota pra criação de registro
 
+
+export default router
