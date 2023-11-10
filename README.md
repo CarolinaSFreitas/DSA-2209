@@ -123,3 +123,11 @@ export async function vinhoAlteraPreco(req, res) {
 ````
 
 Em rotas: ``  .patch("/vinhos/:taxa", vinhoAlteraPreco) `` 
+
+
+-----
+
+## 10/11 Criptografia 
+
++ Instalar usando `` npm i bcrypt ``
++ 
