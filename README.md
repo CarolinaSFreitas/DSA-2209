@@ -136,4 +136,11 @@ Como fica a senha:
 
 + Instalar o jsonwebtoken ``npm i jsonwebtoken``
 
-+ Instalar o dotenv `` npm i dotenv `` 
++ Instalar o dotenv `` npm i dotenv ``
+
+Como fica após verificar se a senha do login do usuário tá correta: 
+![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/0e4a1044-486c-40fc-bef3-27f078fc96b5)
+se tiver errada retorna uma mensagem "Email ou senha incorretos"
+
+
+
