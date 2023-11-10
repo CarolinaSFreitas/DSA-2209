@@ -130,6 +130,7 @@ Em rotas: ``  .patch("/vinhos/:taxa", vinhoAlteraPreco) ``
 ## 10/11 Criptografia 
 
 + Instalar usando `` npm i bcrypt ``
-    Como fica a senha:
+
+Como fica a senha:
   ![image](https://github.com/CarolinaSFreitas/api-vinicola-dsa-2209/assets/99994934/f8285f0d-4cb3-4a4f-83b5-49fd9e75651b)
 
