@@ -3,6 +3,7 @@ import { vinhoCreate, vinhoIndex, vinhoUpdate, vinhoDelete, vinhoAlteraPreco, vi
 import { marcaCreate, marcaIndex, marcaUpdate, marcaDelete } from "./controllers/marcaController.js"
 import { usuarioIndex, usuarioCreate } from "./controllers/UsuarioController.js"
 import { loginUsuario } from "./controllers/loginController.js"
+import { verificaLogin } from "./middlewares/verificaLogin.js"
 
 const router = Router()
 
@@ -18,7 +19,7 @@ router.get("/vinhos", vinhoIndex) //rota pra listagem
       .get("/vinhos/quantidade/marca/:marca_id", quantiaVinhosMarca) //mostra a quantidade de vinhos por marca
 
 // --------------------------------------------------------- ROTAS DE VINHOS
-router.get("/marcas", marcaIndex) //rota pra listagem de marcas, já com os vinhos das respectivas marcas
+router.get("/marcas", verificaLogin, marcaIndex) //rota pra listagem de marcas, AQUI ESTÁ O MIDDLEWARE DO LOGIN
       .post("/marcas", marcaCreate) //rota pra criação de registro
       .put("/marcas/:id", marcaUpdate) //rota pra alteração do registro
       .delete("/marcas/:id", marcaDelete) //rota pra deletar registros da vinicola
@@ -30,6 +31,5 @@ router.get("/usuarios", usuarioIndex) //rota pra listagem de usuarios
 // --------------------------------------------------------- ROTAS DE LOGIN
 router.get("/login", loginUsuario) //rota pra login
      
-
 
 export default router
