@@ -125,7 +125,7 @@ export async function vinhoAlteraPreco(req, res) {
 Em rotas: ``  .patch("/vinhos/:taxa", vinhoAlteraPreco) `` 
 
 
------
+----
 
 ## 10/11 Criptografia 
 
@@ -138,9 +138,16 @@ Como fica a senha:
 
 + Instalar o dotenv `` npm i dotenv ``
 
+----
+
 Como fica após verificar se a senha do login do usuário tá correta: 
 ![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/0e4a1044-486c-40fc-bef3-27f078fc96b5)
 se tiver errada retorna uma mensagem "Email ou senha incorretos"
 
+Sem o token a autenticação vai ter falha e não vai permitir a listagem das marcas (tem um Middleware na rota de listagem de Marcas de Vinho)
+Dessa forma:
+![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/df81c2c0-88dc-466c-b03d-aaec5bfed2d1)
 
+Pra fazer a autenticação de forma correta, ir no Insomnia em: Headers > Add > Preencher o campo como "Authorization" e o outro como "Behave <token do usuário>", esse token é o que o usuário recebe quando faz login com sucesso. Então com a autenticação feita com sucesso, agora a listagem de Marcas de Vinho é feita sem erros:
 
+![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/61355076-2ad9-4b66-aeba-3f7251b0c4f9)
