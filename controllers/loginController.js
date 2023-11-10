@@ -6,10 +6,42 @@ dotenv.config()
 
 import { Usuario } from "../models/Usuario.js"
 
-export async function loginUsuario(req, res){
+export async function loginUsuario(req, res) {
     const { email, senha } = req.body
 
-    const mensaErroPadrao = "Erro... Login ou senha Inválidos"
+    const mensaErroPadrao = "Erro... Login ou Senha Inválidos"
+
+    if (!email || !senha) {
+        res.status(400).json({ erro: mensaErroPadrao })
+        return
+    }
+
+    //verifica se o e-mail está cadastrado 
+    try {
+        const usuario = await Usuario.findOne({ where: { email } })
+
+
+        if (usuario == null) {
+            res.status(400).json({ erro: mensaErroPadrao })
+            return
+        }
+
+        if (bcrypt.compareSync(senha, usuario.senha)) {
+            const token = jwt.sign({
+                usuario_logado_id: usuario.id, usuario_logado_id: usuario.nome
+            },
+                process.env.JWT_KEY,
+                { expiresIn: "1h" })
+
+            res.status(200).json({ msg: "Logado", token })
+        }
+        else {
+            res.status(400).json({ erro: mensaErroPadrao })
+            return
+        }
+    } catch (error) {
+        res.status(400).json(error)
+    }
 }
 
 
