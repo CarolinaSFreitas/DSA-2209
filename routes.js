@@ -2,6 +2,7 @@ import { Router } from "express"
 import { vinhoCreate, vinhoIndex, vinhoUpdate, vinhoDelete, vinhoAlteraPreco, vinhoPorTipo, vinhoPorMarca, quantiaVinhosTipo, quantiaVinhosMarca} from "./controllers/vinhoController.js"
 import { marcaCreate, marcaIndex, marcaUpdate, marcaDelete } from "./controllers/marcaController.js"
 import { usuarioIndex, usuarioCreate } from "./controllers/UsuarioController.js"
+import { loginUsuario } from "./controllers/loginController.js"
 
 const router = Router()
 
@@ -25,6 +26,10 @@ router.get("/marcas", marcaIndex) //rota pra listagem de marcas, já com os vinh
 // --------------------------------------------------------- ROTAS DE USUARIOS
 router.get("/usuarios", usuarioIndex) //rota pra listagem de usuarios
       .post("/usuarios", usuarioCreate) //rota pra criação de registro
+
+// --------------------------------------------------------- ROTAS DE LOGIN
+router.get("/login", loginUsuario) //rota pra login
+     
 
 
 export default router
