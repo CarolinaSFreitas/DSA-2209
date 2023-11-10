@@ -7,8 +7,9 @@ dotenv.config()
 import { Usuario } from "../models/Usuario.js"
 
 export async function loginUsuario(req, res){
-    
-}
+    const { email, senha } = req.body
 
+    const mensaErroPadrao = "Erro... Login ou senha Inválidos"
+}
 
 
