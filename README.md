@@ -151,3 +151,8 @@ Dessa forma:
 Pra fazer a autenticação de forma correta, ir no Insomnia em: Headers > Add > Preencher o campo como "Authorization" e o outro como "Behave <token do usuário>", esse token é o que o usuário recebe quando faz login com sucesso. Então com a autenticação feita com sucesso, agora a listagem de Marcas de Vinho é feita sem erros:
 
 ![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/61355076-2ad9-4b66-aeba-3f7251b0c4f9)
+
+Lembrar de criar um arquivo ".env" para armazenar como hidden os tokens, por exemplo:
+
+![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/b1ae37cc-ec58-4c7c-82ff-de64382e2a35)
+
