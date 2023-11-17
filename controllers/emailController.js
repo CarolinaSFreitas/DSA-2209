@@ -17,7 +17,7 @@ async function main(nome, email, hash) {
 
     const link = "http://localhost:3000/usuarios/trocasenha/" + hash
 
-    const mensa = "<h4>Sistemas da Vinícola</h4>"
+    let mensa = "<h4>Sistemas da Vinícola</h4>"
     mensa += `<h5>Estimado Usuário: ${nome}</h5>`
     mensa += "<h5>Você solicitou a troca de senha</h5>"
     mensa += `<a href="${link}">Alterar a senha</a>`
