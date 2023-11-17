@@ -5,6 +5,7 @@ import { Marca } from './models/Marca.js'
 import { Usuario } from './models/Usuario.js'
 import routes from './routes.js'
 import cors from 'cors'
+import { log } from './models/Log.js'
 
 const app = express()
 const port = 3000
@@ -20,14 +21,17 @@ async function conecta_db() {
     await sequelize.authenticate();
     console.log('Conexão bem sucedida.');
 
-    await Marca.sync({ alter: true })          //A MARCA PRECISA CRIAR PRIMEIRO PQ ELA É A DONA DA FOREIGN KEY - vai ciar a tabela no banco(se nao existir já) e permitir alterações de campos 
+    await Marca.sync()          //A MARCA PRECISA CRIAR PRIMEIRO PQ ELA É A DONA DA FOREIGN KEY - vai ciar a tabela no banco(se nao existir já) e permitir alterações de campos 
     console.log("Tabela de Marcas: Ok!")
 
-    await Vinho.sync({ alter: true })          //vai ciar a tabela no banco(se nao existir já) e permitir alterações de campos 
+    await Vinho.sync({alter: true})          //vai ciar a tabela no banco(se nao existir já) e permitir alterações de campos 
     console.log("Tabela de Vinhos: Ok!")
 
-    await Usuario.sync({ alter: true })          //vai ciar a tabela no banco(se nao existir já) e permitir alterações de campos 
+    await Usuario.sync()          //vai ciar a tabela no banco(se nao existir já) e permitir alterações de campos 
     console.log("Tabela de Usuários: Ok!")
+
+    await log.sync()
+    console.log("Tabela de Logs: Ok")
 
     await sequelize.authenticate();
     console.log('Conexão bem sucedida.');
