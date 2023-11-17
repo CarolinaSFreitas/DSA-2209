@@ -22,7 +22,8 @@ export const Vinho = sequelize.define('Vinhos', { // nome da tabela
         allowNull: false
     },
 }, {
-    timestamps: false
+    // timestamps: false
+    paranoid: true
 });
 
 // após construir a tabela do model, os relacionamentos são feitos fora:
