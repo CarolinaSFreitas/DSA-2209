@@ -172,4 +172,7 @@ No Mailtrap ir em:
     
 ![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/b40f0a6d-da98-41c4-ab5e-fa15fa2a068d)
 
+**Instalações:**
++ `` npm i nodemailer ``
++ `` npm i md5 `` 
 
