@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer"
 import md5 from "md5";      //serve pra zerar o hash
 import { Usuario } from "../models/Usuario.js";
+import { Troca } from "../models/Troca.js";
 
 // async..await is not allowed in global scope, must use a wrapper
 async function main(nome, email, hash) {
@@ -49,8 +50,9 @@ export async function enviaEmail(req, res) {
 
         main(usuario.nome, email, hash).catch(console.error)
 
-        res.status(200).json({msg: "Ok! E-mail enviado com sucesso :)"})
+        await Troca.create({email, hash})
 
+        res.status(200).json({msg: "Ok! E-mail enviado com sucesso :)"})
     } catch (error) {
         res.status(400).json({ error })
     }
