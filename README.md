@@ -174,5 +174,10 @@ No Mailtrap ir em:
 
 **Instalações:**
 + `` npm i nodemailer ``
-+ `` npm i md5 `` 
++ `` npm i md5 ``
+
+Inbox do Mailtrap depois da solicitação de troca de senha:
+
+![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/2d43ceac-c54e-4a0d-8d38-74615c05b5e7)
+
 
