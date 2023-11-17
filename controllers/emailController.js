@@ -45,6 +45,9 @@ export async function enviaEmail(req, res) {
             return
         }
 
+        const hash = md5(usuario.nome + email + Date.now())
+
+        
 
 
     } catch (error) {
