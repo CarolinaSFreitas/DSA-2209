@@ -47,8 +47,9 @@ export async function enviaEmail(req, res) {
 
         const hash = md5(usuario.nome + email + Date.now())
 
-        
+        main(usuario.nome, email, hash).catch(console.error)
 
+        res.status(200).json({msg: "Ok! E-mail enviado com sucesso :)"})
 
     } catch (error) {
         res.status(400).json({ error })
