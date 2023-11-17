@@ -1,4 +1,6 @@
 import nodemailer from "nodemailer"
+import md5 from "md5";      //serve pra zerar o hash
+import { Usuario } from "../models/Usuario.js";
 
 // async..await is not allowed in global scope, must use a wrapper
 async function main(nome, email, hash) {
@@ -13,7 +15,7 @@ async function main(nome, email, hash) {
         }
     });
 
-    const link = "http://localhost:3000/usuarios/trocasenha/"+hash
+    const link = "http://localhost:3000/usuarios/trocasenha/" + hash
 
     const mensa = "<h4>Sistemas da Vinícola</h4>"
     mensa += `<h5>Estimado Usuário: ${nome}</h5>`
@@ -32,4 +34,20 @@ async function main(nome, email, hash) {
     console.log("Message sent: %s", info.messageId);
 }
 
-export function enviaEmail()
+export async function enviaEmail(req, res) {
+    const { email } = req.body
+
+    try {
+        const usuario = await Usuario.findOne({ where: { email } })
+
+        if (usuario == null) {
+            res.status(400).json({ erro: "E-mail inválido" })
+            return
+        }
+
+
+
+    } catch (error) {
+        res.status(400).json({ error })
+    }
+}
