@@ -156,3 +156,20 @@ Lembrar de criar um arquivo ".env" para armazenar como hidden os tokens, por exe
 
 ![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/b1ae37cc-ec58-4c7c-82ff-de64382e2a35)
 
+----
+
+## Aula dia 17/11 - Exclusão não verdadeira e Recuperação de senha por e-mail
+
++ https://sequelize.org/docs/v6/core-concepts/paranoid/ - doc. sobre a exclusão não verdadeira
++ https://nodemailer.com/about/ - pacote pra parte de e-mails
++ https://mailtrap.io/pt/ - serviço do envio de e-mails
+
+
+No Mailtrap ir em:
+    1. Email testing
+    2. Inboxes
+    3. Escolhe o Node com o Nodemailer
+    
+![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/b40f0a6d-da98-41c4-ab5e-fa15fa2a068d)
+
+
