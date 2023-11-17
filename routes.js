@@ -1,7 +1,7 @@
 import { Router } from "express"
 import { vinhoCreate, vinhoIndex, vinhoUpdate, vinhoDelete, vinhoAlteraPreco, vinhoPorTipo, vinhoPorMarca, quantiaVinhosTipo, quantiaVinhosMarca} from "./controllers/vinhoController.js"
 import { marcaCreate, marcaIndex, marcaUpdate, marcaDelete } from "./controllers/marcaController.js"
-import { usuarioIndex, usuarioCreate } from "./controllers/UsuarioController.js"
+import { usuarioIndex, usuarioCreate, usuarioTrocaSenha } from "./controllers/usuarioController.js"
 import { loginUsuario } from "./controllers/loginController.js"
 import { verificaLogin } from "./middlewares/verificaLogin.js"
 import { enviaEmail } from "./controllers/emailController.js"
@@ -28,7 +28,8 @@ router.get("/marcas", verificaLogin, marcaIndex) //rota pra listagem de marcas, 
 // --------------------------------------------------------- ROTAS DE USUARIOS
 router.get("/usuarios", usuarioIndex) //rota pra listagem de usuarios
       .post("/usuarios", usuarioCreate) //rota pra criação de registro
-      .get("/usuarios/solicitatroca", enviaEmail)
+      .get("/usuarios/solicitatroca", enviaEmail)           //faz a solicitação de mudança de senha
+      .patch("/usuarios/trocasenha/:hash", usuarioTrocaSenha)                   //realiza a troca de senha
 
 // --------------------------------------------------------- ROTAS DE LOGIN
 router.get("/login", loginUsuario) //rota pra login
