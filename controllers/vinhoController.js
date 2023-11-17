@@ -1,4 +1,5 @@
 import { sequelize } from "../database/conecta.js"
+import { log } from "../models/Log.js";
 import { Marca } from "../models/Marca.js"
 import { Vinho } from "../models/Vinho.js"
 import { Op, Sequelize } from 'sequelize';
@@ -80,6 +81,10 @@ export async function vinhoDelete(req, res) {
         await Vinho.destroy({
             where: { id }
         })
+
+        await log.create({descricao: `Exclusão de Veínculo id: ${id}`, 
+        complemento: `Usuário: ${req.usuario_logado_id} - ${red.usuario_logado_nome}`})
+    
         res.status(200).json({ msg: "Ok! Removido com sucesso :)" })
     } catch (error) {
         res.status(400).send(error)

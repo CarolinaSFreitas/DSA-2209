@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 import { Usuario } from "../models/Usuario.js"
+import { log } from "../models/Log.js"
 
 export async function loginUsuario(req, res) {
     const { email, senha } = req.body
@@ -20,7 +21,9 @@ export async function loginUsuario(req, res) {
     try {
         const usuario = await Usuario.findOne({ where: { email } })
 
-
+        await log.create({descricao: `Tentativa de Login Inválido`,
+        complemento: `E-mail: ${email}`})
+    
         if (usuario == null) {
             res.status(400).json({ erro: mensaErroPadrao })
             return
@@ -43,5 +46,4 @@ export async function loginUsuario(req, res) {
         res.status(400).json(error)
     }
 }
-
 
