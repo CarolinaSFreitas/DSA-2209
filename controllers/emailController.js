@@ -31,3 +31,5 @@ async function main(nome, email, hash) {
 
     console.log("Message sent: %s", info.messageId);
 }
+
+export function enviaEmail()
