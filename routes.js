@@ -4,6 +4,7 @@ import { marcaCreate, marcaIndex, marcaUpdate, marcaDelete } from "./controllers
 import { usuarioIndex, usuarioCreate } from "./controllers/UsuarioController.js"
 import { loginUsuario } from "./controllers/loginController.js"
 import { verificaLogin } from "./middlewares/verificaLogin.js"
+import { enviaEmail } from "./controllers/emailController.js"
 
 const router = Router()
 
@@ -27,6 +28,7 @@ router.get("/marcas", verificaLogin, marcaIndex) //rota pra listagem de marcas, 
 // --------------------------------------------------------- ROTAS DE USUARIOS
 router.get("/usuarios", usuarioIndex) //rota pra listagem de usuarios
       .post("/usuarios", usuarioCreate) //rota pra criação de registro
+      .get("/usuarios/solicitatroca", enviaEmail)
 
 // --------------------------------------------------------- ROTAS DE LOGIN
 router.get("/login", loginUsuario) //rota pra login
