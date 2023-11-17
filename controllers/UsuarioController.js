@@ -1,3 +1,4 @@
+import { Troca } from "../models/Troca.js"
 import { Usuario } from "../models/Usuario.js"
 
 //função de get - vai listar os marcas no insomnia
@@ -67,6 +68,41 @@ export async function usuarioCreate(req, res) {
 
     try {
         const usuario = await Usuario.create({
+            nome, email, senha
+        })
+        res.status(201).json(usuario)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
+
+export async function usuarioTrocaSenha(req, res) {
+    const { hash } = req.params
+    const { email, novasenha } = req.body
+
+    if (!email || !novasenha) {
+        res.status(400).json("Erro... Informe nome, email e senha.")
+        return
+    }
+
+    const mensagem = validaSenha(novasenha)
+    if (mensagem.length > 0) {
+        res.status(400).json({ erro: mensagem.join(', ') })
+        return
+    }
+
+    try {
+
+        const solicitacao = await Troca.findOne({ where: { hash, email } })
+
+        if (solicitacao == null) {
+            res.status(400).json({ erro: "Não foi possível trocar a senha." })
+            return
+        }
+
+
+
+        Usuario.update({
             nome, email, senha
         })
         res.status(201).json(usuario)
