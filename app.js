@@ -37,7 +37,6 @@ async function conecta_db() {
     await Troca.sync()
     console.log("Tabela de Solicitações de Troca de Senhas: Ok")
 
-
     await sequelize.authenticate();
     console.log('Conexão bem sucedida.');
   } catch (error) {
