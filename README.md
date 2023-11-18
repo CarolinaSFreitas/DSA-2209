@@ -180,4 +180,12 @@ Inbox do Mailtrap depois da solicitação de troca de senha:
 
 ![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/2d43ceac-c54e-4a0d-8d38-74615c05b5e7)
 
+Onde buscar a URL pra trocar a senha lá no Mailtrap:
+
+![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/533b47d9-4906-487b-ac89-37547152c7f2)
+
+Cola URL no Insomnia:
+
+![image](https://github.com/CarolinaSFreitas/api-vinicola_dsa/assets/99994934/599a0492-2669-465a-b86b-5c6243a53777)
+
 
