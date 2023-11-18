@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { vinhoCreate, vinhoIndex, vinhoUpdate, vinhoDelete, vinhoAlteraPreco, vinhoPorTipo, vinhoPorMarca, quantiaVinhosTipo, quantiaVinhosMarca} from "./controllers/vinhoController.js"
+import { vinhoCreate, vinhoIndex, vinhoUpdate, vinhoDelete, vinhoAlteraPreco, vinhoPorTipo, vinhoPorMarca, quantiaVinhosTipo, quantiaVinhosMarca } from "./controllers/vinhoController.js"
 import { marcaCreate, marcaIndex, marcaUpdate, marcaDelete } from "./controllers/marcaController.js"
 import { usuarioIndex, usuarioCreate, usuarioTrocaSenha } from "./controllers/usuarioController.js"
 import { loginUsuario } from "./controllers/loginController.js"
@@ -33,6 +33,5 @@ router.get("/usuarios", usuarioIndex) //rota pra listagem de usuarios
 
 // --------------------------------------------------------- ROTAS DE LOGIN
 router.get("/login", loginUsuario) //rota pra login
-     
 
 export default router
