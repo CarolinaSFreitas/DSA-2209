@@ -35,3 +35,8 @@ Usuario.beforeCreate(usuario => {
     usuario.senha = hash
 })
 
+Usuario.beforeUpdate(usuario => {
+    const salt = bcrypt.genSaltSync(12)
+    const hash = bcrypt.hashSync(usuario.senha, salt)
+    usuario.senha = hash
+})
