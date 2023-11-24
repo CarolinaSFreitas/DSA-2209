@@ -102,7 +102,10 @@ export async function usuarioTrocaSenha(req, res) {
 
         Usuario.update({
             senha: novasenha
-        }, { where: { email } })
+        }, { 
+           where: { email },
+           individualHooks: true
+        })
         res.status(200).json({ msg: "OK! Troca de senha realizada com sucesso :)" })
     } catch (error) {
         res.status(400).send(error)
