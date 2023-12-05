@@ -25,5 +25,3 @@ steps:
     npm install express sequelize mysql2 cors bcrypt jsonwebtoken dotenv
   displayName: 'Install project dependencies'
 
-extends:
-  template: system-pre-steps.yml
